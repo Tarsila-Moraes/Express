@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use((req, res, next)=> {
+  console.log(`[${new Date().toLocaleString()}] ${req.url}`)
+  next();
+})
+
 app.get('/sobre', (req, res) => {
   res.send('Sobre: Este é um aplicativo criado com Express.js.');
 });
