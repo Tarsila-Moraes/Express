@@ -7,6 +7,11 @@ app.use((req, res, next)=> {
   next();
 })
 
+app.get('/produto/:id', (req, res) => {
+  const productId = req.params.id;
+  res.send(`Detalhes do produto com ID ${productId}`);
+});
+
 app.get('/sobre', (req, res) => {
   res.send('Sobre: Este é um aplicativo criado com Express.js.');
 });
