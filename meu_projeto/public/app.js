@@ -1,15 +1,19 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+const userRoutes = require ('./userRoutes');
 const PORT = 3000;
+
+app.use('/users', userRoutes);
 
 app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] ${req.url}`)
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-console.log('Middleware express.static configurado para servir arquivos estáticos do diretório public');
+app.get("/", function (req, res){
+  res.sendFile(__dirname + "/public/index.html")
+
+});
 
 app.get('/produto/:id', (req, res) => {
   const productId = req.params.id;
